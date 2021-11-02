@@ -4,7 +4,7 @@ import {Subject} from "rxjs";
 import {NoteService} from "./categorie-detail/notes-list/note.service";
 
 @Injectable({providedIn: 'root'})
-export class CategoryService{
+export class CategoryService {
   categoriesChanged = new Subject<Category[]>();
   private Categories: Category[] = [];
   //   = [
@@ -13,12 +13,15 @@ export class CategoryService{
   // ]
   constructor(private noteService: NoteService) {
   }
+
   getCategories() {
     return this.Categories;
   }
-  getCategory(id: number):Category {
+
+  getCategory(id: number): Category {
     return this.Categories.find(category => category.id === id)!
-}
+  }
+
   setCategories(categories: Category[]) {
     this.Categories = categories;
     this.categoriesChanged.next(this.Categories.slice());
