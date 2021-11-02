@@ -1,0 +1,52 @@
+.note-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: rgb(40,40,40);
+  flex-direction: column;
+}
+
+.category {
+  height: 14%;
+  padding: 15px 10px 10px 45px;
+  border-bottom: 0.5px solid rgba(69,69,69,0.5);
+  color: grey;
+}
+form {
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  padding: 15px 10px 10px 30px;
+  color: white;
+  font-size: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 15px 10px 10px 30px;
+  color: white;
+  font-size: 30px;
+  background-color: inherit;
+}
+textarea {
+  height: 87%;
+  width: 100%;
+  background-color: rgb(40,40,40);
+  color: grey;
+  padding: 10px 10px 10px 30px;
+}
+input:focus {
+  outline: none;
+}
+textarea:focus {
+  outline: none !important;
+}
+
+.buttons {
+  padding: 5px;
+  height: 8%;
+  border-top: 0.5px solid rgba(69,69,69,0.5);;
+}
+

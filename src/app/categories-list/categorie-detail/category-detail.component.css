@@ -1,0 +1,50 @@
+.block {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 34% 66%;
+  background-color: grey;
+}
+
+.notes-container {
+  height: 80%;
+  border-bottom: 0.5px solid rgba(69,69,69,0.5);
+  overflow-y: scroll;
+}
+
+.notes-list {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(24,24,24);
+  color: white;
+}
+
+.add-button {
+  height: 10%;
+  padding-top: 7px;
+  text-align: center;
+}
+
+.note {
+  height: 100vh;
+}
+
+.category {
+  height: 12%;
+  padding: 15px 10px 10px 30px;
+  border-bottom: 0.5px solid rgba(69,69,69,0.5);
+}
+.notes-item:hover {
+  background-color: rgb(40,40,40);
+}
+.notes-item {
+  padding: 16px;
+  height: 18%;
+  border-bottom: 0.5px solid rgba(69,69,69,0.5);
+}
+
+.link-active {
+  background-color: rgb(40,40,40);
+  border: 3px solid dimgrey;
+}

@@ -1,0 +1,27 @@
+<div class="note-container">
+  <div class="category">{{category.name}}</div>
+  <form (ngSubmit)="onSave(f)" #f="ngForm">
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Title"
+      [(ngModel)]="note.title"
+      name="title">
+    <textarea
+      class="form-control"
+      placeholder="Write your note"
+      [(ngModel)]="note.content"
+      name="description"
+    ></textarea>
+
+  </form>
+  <div class="buttons">
+    <button class="bg-gray-700 hover:bg-gray-500 text-white font-bold py-1.5 px-2.5 rounded-full" >
+      Save Note
+    </button>
+    <button class="bg-gray-700 hover:bg-gray-500 text-white font-bold py-1.5 px-2.5 rounded-full" >
+      Delete Note
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,9 @@
+<div class="categories">
+  <button class="my-4 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded-full " type="button" (click)="onCreateCategory()">
+    Create Category
+  </button>
+  <app-create-category *ngIf="createMode" (done)="onCreated()"></app-create-category>
+  <h1 style="background-color: #00a82d" class="bg-gray-600 text-black font-bold py-2 px-4 rounded-full my-1 ">Categories</h1>
+<app-category-item  class="category" *ngFor="let category of categories"
+  [category]="category" [routerLink]="[category.id]" routerLinkActive="category-active" (click)="onGetNotes(category)"></app-category-item>
+</div>
