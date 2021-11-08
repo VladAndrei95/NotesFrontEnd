@@ -18,8 +18,8 @@ export class NoteService {
   constructor() {
   }
 
-  getNote(category: Category, noteId: number) {
-    return this.notes.find(note => (note.id === noteId && category.id === note.category_id))!
+  getNote(noteIndex: number) {
+    return this.notes[noteIndex];
   }
 
   getNotes() {
@@ -36,7 +36,33 @@ export class NoteService {
   }
 
   addNote(category: Category) {
+    let note = new Note('NewNote', 'Write some content', category.id, null)
+    let newTitle = this.checkIfDuplicate(note);
+    note.title = newTitle;
+    this.notes.push(note);
+    this.notesChanged.next(this.notes.slice());
+  }
 
+  checkIfDuplicate(note: Note) {
+    let unique = new Set(this.notes.map(note => note.title));
+    let cnt = 1;
+    while (cnt) {
+      let size = unique.size;
+      unique.add(note.title);
+      if (size === unique.size) {
+        if (cnt === 1) {
+          note.title = note.title + '(' + cnt.toString() + ')';
+        } else {
+          let newNoteTitle = note.title.split('');
+          newNoteTitle[newNoteTitle.length - 2] = cnt.toString();
+          note.title = newNoteTitle.join('');
+        }
+        cnt++;
+      } else {
+        cnt = 0;
+      }
+    }
+    return note.title;
   }
 }
 

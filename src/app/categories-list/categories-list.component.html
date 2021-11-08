@@ -1,9 +1,21 @@
 <div class="categories">
-  <button class="my-4 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded-full " type="button" (click)="onCreateCategory()">
+  <button class="text-black py-2 px-4 rounded-full create-category"
+          type="button" (click)="onCreateCategory()">
     Create Category
   </button>
-  <app-create-category *ngIf="createMode" (done)="onCreated()"></app-create-category>
-  <h1 style="background-color: #00a82d" class="bg-gray-600 text-black font-bold py-2 px-4 rounded-full my-1 ">Categories</h1>
-<app-category-item  class="category" *ngFor="let category of categories"
-  [category]="category" [routerLink]="[category.id]" routerLinkActive="category-active" (click)="onGetNotes(category)"></app-category-item>
+  <div class="dropdown">
+    <h1 style="height: 35px; font-weight: 450; font-size: 1.3em"
+        class="cursor-pointer" (click)="toggleDropdown()"> <fa-icon style="margin-left: 15px" [icon]="faCaretDown"></fa-icon><fa-icon style="margin-left: 8px;margin-right: 8px" [icon]="faBookOpen"></fa-icon>Categories
+    </h1>
+    <div id="myDropdown" class="dropdown-content" [ngClass]="dropdownOpen ? 'show' : ''" >
+
+
+      <div>
+      <app-category-item class="dropdown-item" *ngFor="let category of categories"
+                         [category]="category" [routerLink]="[category.id]" routerLinkActive="category-active"
+                         (click)="onGetNotes(category)"></app-category-item></div>
+    </div>
+  </div>
 </div>
+<app-create-category *ngIf="createMode" (done)="onCreated()"></app-create-category>
+

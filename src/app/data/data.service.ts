@@ -5,11 +5,14 @@ import {Category} from "../categories-list/category.model";
 import {CategoryService} from "../categories-list/category.service";
 import {NoteService} from "../categories-list/categorie-detail/notes-list/note.service";
 import {Note} from "../categories-list/categorie-detail/notes-list/note.model";
+import {BehaviorSubject} from "rxjs";
+
 interface CategoryResponse {
   id: number;
   name: string;
   created_at: Date;
 }
+
 interface NoteResponse {
   id: number;
   title: string;
@@ -19,39 +22,93 @@ interface NoteResponse {
   updated_at: Date;
 }
 
-@Injectable({providedIn:'root'})
-export class DataService{
+interface User {
+  name: string;
+  pass: string;
+}
+
+@Injectable({providedIn: 'root'})
+export class DataService {
+  user = new BehaviorSubject<User | null>(null);
   constructor(private http: HttpClient,
               private categoryService: CategoryService,
               private noteService: NoteService) {
   }
+
+    singIn(name: string,pass:string) {
+    return this.http.post('http://localhost:3001/login',{
+      username:name,
+      password:pass
+    },{withCredentials: true}).pipe(tap(response => {
+      this.user.next({name: name,pass: pass});
+    }))
+  }
+  createAccount(name: string,pass:string) {
+    this.http.post('http://localhost:3001/register',{
+      username:name,
+      password:pass
+    }).subscribe();
+  }
+
+
   fetchCategories() {
-    this.http.get<CategoryResponse[]>('http://localhost:3001/categories').pipe
+    return this.http.get<CategoryResponse[]>('http://localhost:3001/categories').pipe
     (tap(categoriesResponse => {
       let categories = categoriesResponse.map(categoryResponse => {
-        let category = new Category(categoryResponse.id,categoryResponse.name);
+        let category = new Category(categoryResponse.id, categoryResponse.name);
         return category;
-      } );
-      console.log('response:',categories);
-      this.categoryService.setCategories(categories)})).subscribe();
+      });
+      this.categoryService.setCategories(categories)
+    }));
   }
-  fetchNotes(category: Category) {
-    this.http.get<NoteResponse[]>('http://localhost:3001/notes/'+category.id).pipe(
+
+  fetchNotes(id: number) {
+    return this.http.get<NoteResponse[]>('http://localhost:3001/notes/' + id).pipe(
       tap(notesResponse => {
         let notes = notesResponse.map(noteResponse => {
-          let note = new Note(noteResponse.id,noteResponse.title,noteResponse.content,noteResponse.category_id);
+          let note = new Note(noteResponse.title, noteResponse.content, noteResponse.category_id, noteResponse.id);
           return note;
         });
         this.noteService.setNotes(notes);
       })
-    ).subscribe();
+    );
   }
-  addCategory(name:string){
-    this.http.post('http://localhost:3001/categories',{
+
+  addCategory(name: string) {
+    this.http.post('http://localhost:3001/categories', {
       categoryName: name
     }).subscribe(response => {
-      this.fetchCategories();
+      this.fetchCategories().subscribe();
     });
   }
 
+  deleteCategory(category: Category) {
+    this.http.delete('http://localhost:3001/categories/' + category.id)
+      .subscribe(response => this.fetchCategories().subscribe());
+  }
+
+  updateCategory(category: Category) {
+    this.http.patch('http://localhost:3001/categories/'+category.id, {
+      categoryName: category.name
+    }).subscribe(response => this.fetchCategories().subscribe());
+  }
+
+  saveNote(note: Note) {
+    this.http.post('http://localhost:3001/notes', {
+      categoryId: note.category_id,
+      title: note.title,
+      content: note.content,
+      noteId: note.id
+    }).subscribe(response => {
+      this.noteService.resetNotes();
+      this.fetchNotes(note.category_id);
+    });
+  }
+
+  deleteNote(noteid: number, categoryId: number) {
+    this.http.delete('http://localhost:3001/notes/' + noteid).subscribe(response => {
+      this.noteService.resetNotes();
+      this.fetchNotes(categoryId).subscribe();
+    });
+  }
 }

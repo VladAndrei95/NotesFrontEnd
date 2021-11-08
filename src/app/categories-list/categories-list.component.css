@@ -1,33 +1,81 @@
 .categories {
   height: 100vh;
+  width: 100%;
   display: flex;
   padding-top: 10%;
   flex-direction: column;
   background-color: black;
   justify-content: flex-start;
   align-items: center;
-  color: grey;
+  color: rgb(168,168,168);
+}
+.create-category {
+  margin-bottom: 20px;
+  background-color: #00FF00
 }
 
-.category {
+.create-category:hover {
+  background-color: #00e63d;
+  color: rgb(40,40,40);
+}
+/*.category {*/
+/*  display: block;*/
+/*  cursor: pointer;*/
+/*  width: 100%;*/
+/*  height: 5%;*/
+/*  padding: 5px;*/
+/*  text-align: center;*/
+/*  font-weight: 400;*/
+/*}*/
+
+
+div .category-active {
+  width: 100%;
+  color: darkgrey;
+  background-color: rgb(48,48,48);
+
+
+}
+
+
+div .show {display: block;}
+
+div .dropdown h1 {
+  display: flex;
+}
+
+
+.dropdown {
+  width: 100%;
+  position: relative;
+}
+
+/*.dropdown:hover {*/
+/*  background-color: rgb(48,48,48);*/
+/*}*/
+
+.dropdown-content {
+   width: 100%;
+   display: none;
+   height: 100%;
+   position: absolute;
+   font-weight: 490;
+ }
+
+.dropdown h1:hover {
+  background-color: rgb(32,32,32);
+}
+
+.dropdown-item {
   cursor: pointer;
   width: 100%;
-  height: 5%;
-  padding: 5px;
+  display: block;
   text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.category-active input {
-  background-color: rgb(40,40,40);
-  border: 0.5px solid black;
+.dropdown-item:hover{
+  background-color: rgb(32,32,32);
 }
 
-.category-active {
-  color: darkgrey;
-  background-color: rgb(40,40,40);
-  border: 0.5px solid black;
-}
-
-.category:hover{
-  background-color: rgb(40,40,40);
-}

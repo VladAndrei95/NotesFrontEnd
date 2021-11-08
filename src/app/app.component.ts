@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "./data/data.service";
 import {migrateLegacyGlobalConfig} from "@angular/cli/utilities/config";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,15 @@ import {migrateLegacyGlobalConfig} from "@angular/cli/utilities/config";
 })
 export class AppComponent implements OnInit{
   title = 'notes-app';
-  constructor(private dataService: DataService) {
+  authMode = true;
+  constructor(private router: Router) {
   }
   ngOnInit() {
-    this.dataService.fetchCategories();
+
+  }
+
+  loggedIn() {
+    this.authMode = false;
+    this.router.navigate(['login']);
   }
 }

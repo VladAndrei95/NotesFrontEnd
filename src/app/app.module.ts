@@ -6,10 +6,16 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { CategoryItemComponent } from './categories-list/category-item/category-item.component';
 import { CategoryDetailComponent } from './categories-list/categorie-detail/category-detail.component';
 import { NoteDetailComponent } from './categories-list/categorie-detail/notes-list/note-detail/note-detail.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NoteItemComponent } from './categories-list/categorie-detail/notes-list/note-item/note-item.component';
 import {HttpClientModule} from "@angular/common/http";
 import { CreateCategoryComponent } from './create-category/create-category.component';
+import { RenameCategoryComponent } from './create-category/rename-category/rename-category.component';
+import { DeleteCategoryComponent } from './create-category/delete-category/delete-category.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AuthComponent } from './auth/auth.component';
+import { DropdownDirective } from './directive/dropdown.directive';
+import { LoggedInComponent } from './logged-in/logged-in.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +25,20 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
     CategoryDetailComponent,
     NoteDetailComponent,
     NoteItemComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    RenameCategoryComponent,
+    DeleteCategoryComponent,
+    AuthComponent,
+    DropdownDirective,
+    LoggedInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

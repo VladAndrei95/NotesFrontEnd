@@ -3,6 +3,8 @@ import { Category } from './category.model';
 import {CategoryService} from "./category.service";
 import {NoteService} from "./categorie-detail/notes-list/note.service";
 import {DataService} from "../data/data.service";
+import {faCaretDown,faBookOpen} from "@fortawesome/free-solid-svg-icons";
+
 
 @Component({
   selector: 'app-categories-list',
@@ -12,6 +14,9 @@ import {DataService} from "../data/data.service";
 export class CategoriesListComponent implements OnInit {
   categories!: Category[];
   createMode = false;
+  faCaretDown = faCaretDown;
+  faBookOpen = faBookOpen;
+  dropdownOpen = false;
   constructor(private categoryService: CategoryService,
               private noteService: NoteService,
               private dataService: DataService) {
@@ -26,13 +31,16 @@ export class CategoriesListComponent implements OnInit {
   }
   onCreateCategory() {
     this.createMode = true;
-    // this.categoryService.addCategory();
   }
   onGetNotes(category: Category) {
   this.noteService.resetNotes();
-  this.dataService.fetchNotes(category);
+  // this.dataService.fetchNotes(category.id).subscribe();
   }
   onCreated() {
     this.createMode = false;
   }
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
 }

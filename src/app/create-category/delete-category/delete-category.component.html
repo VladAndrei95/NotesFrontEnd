@@ -1,0 +1,13 @@
+<div class="backdrop"></div>
+<div class="alert-box">
+  <div class="alert-box-items">
+    <h3 style="color: white">Delete Category?</h3>
+    <p style="color: white">Any notes in the category will be deleted. This cannot be undone.</p>
+  </div>
+  <div class="alert-box-actions">
+    <button class="cancel-button py-2 px-4 rounded" (click)="onClose()">Close</button>
+    <button class="delete-button py-2 px-4 rounded" (click)="onDelete()" [routerLink]="['']">Delete</button>
+  </div>
+</div>
+
+

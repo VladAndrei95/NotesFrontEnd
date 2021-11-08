@@ -1,0 +1,23 @@
+<div class="backdrop"></div>
+<div class="alert-box">
+  <div class="alert-box-items">
+    <h3 style="color: white">Rename category</h3>
+    <div>
+      <form #f="ngForm">
+        <label for="name" style="color: white">Name</label>
+        <div>
+          <input type="text" id="name" placeholder="Category Name" class="form-control text-muted" name="name"
+                 [ngModel]="category.name" #name="ngModel" required>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="alert-box-actions">
+    <button class="cancel-button py-2 px-4 rounded" type="button" (click)="onCancel()">Close</button>
+    <button class="create-button py-2 px-4 rounded" [disabled]="name.value === category.name" type="submit"
+            (click)="onContinue(f)">Continue
+    </button>
+  </div>
+</div>
+
+
