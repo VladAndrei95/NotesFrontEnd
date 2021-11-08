@@ -37,7 +37,7 @@ export class AuthComponent implements OnInit {
   }
   onSubmit() {
     if(this.loginMode){
-    this.dataService.singIn(this.signInForm.value.username,this.signInForm.value.password)
+    this.dataService.signIn(this.signInForm.value.username,this.signInForm.value.password)
       .subscribe(response => {
         this.dataService.fetchCategories()
           .subscribe(response => {

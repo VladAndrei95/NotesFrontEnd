@@ -35,7 +35,7 @@ export class DataService {
               private noteService: NoteService) {
   }
 
-    singIn(name: string,pass:string) {
+    signIn(name: string,pass:string) {
     return this.http.post('http://localhost:3001/login',{
       username:name,
       password:pass
@@ -51,7 +51,7 @@ export class DataService {
   }
 
   fetchCategories() {
-    return this.http.get<CategoryResponse[]>('http://localhost:3001/categories',{withCredentials:true}).pipe
+    return this.http.get<CategoryResponse[]>('http://localhost:3001/categories').pipe
     (tap(categoriesResponse => {
       let categories = categoriesResponse.map(categoryResponse => {
         let category = new Category(categoryResponse.id, categoryResponse.name);
