@@ -50,9 +50,8 @@ export class DataService {
     }).subscribe();
   }
 
-
   fetchCategories() {
-    return this.http.get<CategoryResponse[]>('http://localhost:3001/categories').pipe
+    return this.http.get<CategoryResponse[]>('http://localhost:3001/categories',{withCredentials:true}).pipe
     (tap(categoriesResponse => {
       let categories = categoriesResponse.map(categoryResponse => {
         let category = new Category(categoryResponse.id, categoryResponse.name);

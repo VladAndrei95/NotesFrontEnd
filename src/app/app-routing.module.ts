@@ -6,6 +6,7 @@ import {CategoryResolverService} from "./categories-list/categorie-detail/catego
 import {NotesResolverService} from "./categories-list/categorie-detail/notes-list/notes-resolver.service";
 import {AuthComponent} from "./auth/auth.component";
 import {LoggedInComponent} from "./logged-in/logged-in.component";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 const routes: Routes = [
   {path:'', component: AuthComponent},
@@ -19,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

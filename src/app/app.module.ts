@@ -8,7 +8,7 @@ import { CategoryDetailComponent } from './categories-list/categorie-detail/cate
 import { NoteDetailComponent } from './categories-list/categorie-detail/notes-list/note-detail/note-detail.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NoteItemComponent } from './categories-list/categorie-detail/notes-list/note-item/note-item.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { RenameCategoryComponent } from './create-category/rename-category/rename-category.component';
 import { DeleteCategoryComponent } from './create-category/delete-category/delete-category.component';
@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './directive/dropdown.directive';
 import { LoggedInComponent } from './logged-in/logged-in.component';
+import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { LoggedInComponent } from './logged-in/logged-in.component';
     FontAwesomeModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
