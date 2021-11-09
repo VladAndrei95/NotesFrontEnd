@@ -92,6 +92,7 @@ export class DataService {
     }).subscribe(response => this.fetchCategories().subscribe());
   }
 
+
   saveNote(note: Note) {
     this.http.post('http://localhost:3001/notes', {
       categoryId: note.category_id,
@@ -100,7 +101,7 @@ export class DataService {
       noteId: note.id
     }).subscribe(response => {
       this.noteService.resetNotes();
-      this.fetchNotes(note.category_id);
+      this.fetchNotes(note.category_id).subscribe();
     });
   }
 

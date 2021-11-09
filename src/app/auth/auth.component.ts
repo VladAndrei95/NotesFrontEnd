@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {faUser, faUserAlt, faLock} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataService} from "../data/data.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -16,9 +16,9 @@ export class AuthComponent implements OnInit {
   loginMode = true;
   signInForm!: FormGroup;
   createAccForm!: FormGroup;
-  @Output() logged = new EventEmitter<void>();
   constructor(private dataService: DataService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -41,11 +41,9 @@ export class AuthComponent implements OnInit {
       .subscribe(response => {
         this.dataService.fetchCategories()
           .subscribe(response => {
-            console.log(response);
-            this.router.navigate(['login']);
+            this.router.navigate(['/home']);
         })
     } )
-      this.logged.emit();
     } else
     {
       this.dataService.createAccount(this.createAccForm.value.username,this.createAccForm.value.password);

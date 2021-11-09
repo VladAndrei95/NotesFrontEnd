@@ -3,7 +3,7 @@ import { Category } from './category.model';
 import {CategoryService} from "./category.service";
 import {NoteService} from "./categorie-detail/notes-list/note.service";
 import {DataService} from "../data/data.service";
-import {faCaretDown,faBookOpen} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown,faBookOpen,faHome} from "@fortawesome/free-solid-svg-icons";
 
 
 @Component({
@@ -16,6 +16,7 @@ export class CategoriesListComponent implements OnInit {
   createMode = false;
   faCaretDown = faCaretDown;
   faBookOpen = faBookOpen;
+  faHome = faHome;
   dropdownOpen = false;
   constructor(private categoryService: CategoryService,
               private noteService: NoteService,

@@ -2,8 +2,8 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 34% 67.2%;
-  background-color: grey;
+  grid-template-columns: 34% 67%;
+  background-color: rgb(24,24,24);;
 }
 
 .notes-container {
@@ -42,7 +42,8 @@
 
 .note {
   height: 100vh;
-  background-color: inherit;
+  width: 100%;
+  border-left: 1px solid black;
 }
 .category {
   height: 12%;

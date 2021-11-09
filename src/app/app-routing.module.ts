@@ -6,16 +6,19 @@ import {CategoryResolverService} from "./categories-list/categorie-detail/catego
 import {NotesResolverService} from "./categories-list/categorie-detail/notes-list/notes-resolver.service";
 import {AuthComponent} from "./auth/auth.component";
 import {LoggedInComponent} from "./logged-in/logged-in.component";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthGuardService} from "./auth/auth-guard.service";
+import {HomeComponent} from "./categories-list/home/home.component";
+
 
 const routes: Routes = [
-  {path:'', component: AuthComponent},
-  {path:'login', component: LoggedInComponent},
-  {path:'login/:id', component: CategoryDetailComponent,resolve: [CategoryResolverService,NotesResolverService],
-    children:[
-      {path:':id' , component: NoteDetailComponent}
+  {path:'auth', component: AuthComponent},
+  {path:'', component: LoggedInComponent, canActivate:[AuthGuardService], children:[
+      {path:'home', component: HomeComponent},
+      {path:':id', component: CategoryDetailComponent,resolve: [CategoryResolverService,NotesResolverService],
+        children:[
+          {path:':id' , component: NoteDetailComponent}
+        ]},
     ]},
-
  ];
 
 @NgModule({

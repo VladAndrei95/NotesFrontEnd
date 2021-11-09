@@ -14,11 +14,5 @@ export class AppComponent implements OnInit{
   constructor(private router: Router) {
   }
   ngOnInit() {
-
-  }
-
-  loggedIn() {
-    this.authMode = false;
-    this.router.navigate(['login']);
   }
 }

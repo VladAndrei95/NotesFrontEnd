@@ -17,6 +17,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './directive/dropdown.directive';
 import { LoggedInComponent } from './logged-in/logged-in.component';
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { HomeComponent } from './categories-list/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {AuthInterceptorService} from "./auth/auth-interceptor.service";
     AuthComponent,
     DropdownDirective,
     LoggedInComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
