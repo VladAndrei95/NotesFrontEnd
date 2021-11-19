@@ -1,29 +1,31 @@
 <div class="note-container">
   <div class="category">
     <fa-icon [icon]="faPenFancy"></fa-icon>
-    {{category.name}}</div>
+    {{category.name}}
+  </div>
+
   <form #f="ngForm">
     <input
       class="form-control"
       type="text"
       placeholder="Title"
-      [(ngModel)]="note.title"
+      [(ngModel)]="this.toSaveNote.title"
       name="title">
-    <textarea
-      class="form-control"
-      placeholder="Write your note"
-      [(ngModel)]="note.content"
-      name="description"
-    ></textarea>
+<!--    <textarea-->
+<!--      class="form-control"-->
+<!--      placeholder="Write your note"-->
+<!--      [(ngModel)]="this.toSaveNote.content"-->
+<!--      name="content"-->
+<!--    ></textarea>-->
+    <quill-editor [(ngModel)]="this.toSaveNote.content" [styles]="editorStyle" name="quilleditor"></quill-editor>
   </form>
-  <div class="buttons">
-    <button class="bg-gray-700 hover:bg-gray-500 text-white font-bold py-1.5 px-2.5 rounded-full mx-1"
+  <div class="buttons-container">
+    <button class="buttons text-black rounded-full  py-1.5 px-2.5 rounded-full mx-1"
             (click)="onSaveNote()">
       Save Note
     </button>
-<!-- TODO: HIDE BUTTON IF NOTE_ID != EXIST   -->
-    <button class="bg-gray-700 hover:bg-gray-500 text-white font-bold py-1.5 px-2.5 rounded-full mx-1"
-            (click)="onDeleteNote()" [routerLink]="['../']">
+    <button class="buttons delete text-black rounded-full py-1.5 px-2.5 rounded-full mx-1"
+            (click)="onDeleteNote()" [routerLink]="['../']" [disabled]="saved? null : 'disabled'">
       Delete Note
     </button>
   </div>

@@ -7,6 +7,7 @@ import {NoteService} from "../note.service";
 import {Category} from "../../../category.model";
 import {DataService} from "../../../../data/data.service";
 import {faPenFancy} from "@fortawesome/free-solid-svg-icons";
+
 @Component({
   selector: 'app-note-detail',
   templateUrl: './note-detail.component.html',
@@ -15,8 +16,16 @@ import {faPenFancy} from "@fortawesome/free-solid-svg-icons";
 export class NoteDetailComponent implements OnInit {
   @ViewChild('f') noteForm!: NgForm;
   note!: Note;
+  toSaveNote!: Note;
   category!: Category;
   faPenFancy = faPenFancy;
+  saved: boolean = false
+  editorStyle = {
+    height: '75%',
+    width: '100%',
+    border: 'none',
+    color: 'white'
+  }
   constructor(private route: ActivatedRoute,
               private noteService: NoteService,
               private router: Router,
@@ -29,10 +38,13 @@ export class NoteDetailComponent implements OnInit {
       let categoryId = +url[1];
       this.category = this.categoryService.getCategory(categoryId);
       this.note = this.noteService.getNote(+url[2]);
+      this.toSaveNote = new Note(this.note.title, this.note.content, this.note.category_id,this.note.updated_at, this.note.id! | null!);
+      this.saved = false;
   });
   }
   onSaveNote() {
-    this.dataService.saveNote(this.note);
+    this.dataService.saveNote(this.toSaveNote);
+    this.saved = true;
   }
   onDeleteNote() {
     // @ts-ignore

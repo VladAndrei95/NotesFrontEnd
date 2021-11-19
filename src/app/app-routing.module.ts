@@ -6,15 +6,17 @@ import {CategoryResolverService} from "./categories-list/categorie-detail/catego
 import {NotesResolverService} from "./categories-list/categorie-detail/notes-list/notes-resolver.service";
 import {AuthComponent} from "./auth/auth.component";
 import {LoggedInComponent} from "./logged-in/logged-in.component";
-import {AuthGuardService} from "./auth/auth-guard.service";
 import {HomeComponent} from "./categories-list/home/home.component";
+import {CanaccessloginGuardService} from "./auth/canaccesslogin-guard.service";
+import {AuthGuardService} from "./auth/auth-guard.service";
+// import {CanaccessloginGuardService} from "./auth/canaccesslogin-guard.service";
 
 
 const routes: Routes = [
-  {path:'auth', component: AuthComponent},
-  {path:'', component: LoggedInComponent, canActivate:[AuthGuardService], children:[
+  {path:'auth', component: AuthComponent, canActivate: [CanaccessloginGuardService]},
+  {path:'', component: LoggedInComponent,canActivate: [AuthGuardService], resolve:[CategoryResolverService], children:[
       {path:'home', component: HomeComponent},
-      {path:':id', component: CategoryDetailComponent,resolve: [CategoryResolverService,NotesResolverService],
+      {path:':id', component: CategoryDetailComponent,resolve: [NotesResolverService],
         children:[
           {path:':id' , component: NoteDetailComponent}
         ]},

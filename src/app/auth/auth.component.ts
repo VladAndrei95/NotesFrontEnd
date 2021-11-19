@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {faUser, faUserAlt, faLock} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DataService} from "../data/data.service";
@@ -16,6 +16,7 @@ export class AuthComponent implements OnInit {
   loginMode = true;
   signInForm!: FormGroup;
   createAccForm!: FormGroup;
+
   constructor(private dataService: DataService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -34,6 +35,8 @@ export class AuthComponent implements OnInit {
   }
   onChangeLoginMode () {
     this.loginMode = !this.loginMode;
+    this.createAccForm.reset();
+    this.signInForm.reset();
   }
   onSubmit() {
     if(this.loginMode){
@@ -46,9 +49,13 @@ export class AuthComponent implements OnInit {
     } )
     } else
     {
-      this.dataService.createAccount(this.createAccForm.value.username,this.createAccForm.value.password);
-      this.createAccForm.reset();
-      this.loginMode=!this.loginMode;
+      this.dataService.createAccount(this.createAccForm.value.username,this.createAccForm.value.password)
+        .subscribe(response => {
+                                      this.loginMode=!this.loginMode;
+                                      this.createAccForm.reset();}
+                    , error => {
+            console.log(error.status)});
+
     }
   }
 }

@@ -46,9 +46,31 @@ form textarea:focus {
   color: grey;
 }
 
-.buttons {
+.buttons-container {
   padding: 5px;
   height: 8%;
-  border-top: 0.5px solid rgba(69,69,69,0.5);;
+  border-top: 0.5px solid rgba(69,69,69,0.5);
 }
+.delete {
+
+}
+.delete:disabled {
+  background-color: rgb(40,40,40);
+  color: rgba(69,69,69,0.5);
+  border: 0.5px solid rgba(69,69,69,0.5);
+}
+
+.buttons:enabled {
+  background-color: #32CD32;
+}
+
+.buttons:hover:enabled {
+  background-color: #3CB371;
+  color: #00e63d;
+}
+
+
+/*:host ::ng-deep .ck-editor__editable_inline {*/
+/*  min-height: 500px;*/
+/*}*/
 

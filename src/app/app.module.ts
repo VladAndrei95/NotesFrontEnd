@@ -18,6 +18,10 @@ import { DropdownDirective } from './directive/dropdown.directive';
 import { LoggedInComponent } from './logged-in/logged-in.component';
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { HomeComponent } from './categories-list/home/home.component';
+import {IsloggedinInterceptorService} from "./auth/isloggedin-interceptor.service";
+import {QuillModule} from "ngx-quill";
+
+
 
 @NgModule({
   declarations: [
@@ -41,9 +45,10 @@ import { HomeComponent } from './categories-list/home/home.component';
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QuillModule.forRoot()
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi:true}],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:IsloggedinInterceptorService,multi:true},{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -23,8 +23,9 @@
            *ngFor="let note of notes; let i = index"
            [routerLink]="[i]"
            routerLinkActive="link-active"
-           [routerLinkActiveOptions]="{exact:true}">
+           [routerLinkActiveOptions]="{exact:true}" (click)="onNoteSelected()">
         {{note.title}}
+        <p class="mt-10 text-xs text-gray-400">{{note.updated_at | date: 'MMM d'}}</p>
       </div>
       <div class="empty-note-list-container" *ngIf="!notes.length">
       <svg width="200" height="160" fill="none" xmlns="http://www.w3.org/2000/svg" class="empty-note-list">
@@ -55,6 +56,10 @@
     <!--    </div>-->
   </div>
   <div class="note">
+    <div class="empty-note-detail-container" *ngIf="!this.selectNote">
+    <img class="empty-note-detail" src="assets/Select-note.svg">
+      <h1 class="center-h1 text-gray-50 mt-10 text-lg" >Please Select A <span style="color:#32CD32;">NOTE</span></h1>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

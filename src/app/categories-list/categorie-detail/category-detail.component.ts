@@ -21,7 +21,7 @@ export class CategoryDetailComponent implements OnInit {
   faEllipsis = faEllipsisH;
   faBookOpen = faBookOpen;
   faCaretDown = faCaretDown;
-
+  selectNote!: boolean;
   constructor(private categoryService: CategoryService,
               private route: ActivatedRoute,
               private noteService: NoteService,
@@ -29,6 +29,7 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectNote = false;
     this.route.params.subscribe((params: Params) => {
       this.category = this.categoryService.getCategory(+params['id']);
       this.notes = this.noteService.getNotes()
@@ -39,8 +40,8 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   onCreateNote() {
-    this.noteService.addNote(this.category);
-    this.dataService.saveNote(this.notes[this.notes.length-1]);
+    let note = new Note('NewNote', 'Write some content', this.category.id, null,null)
+    this.dataService.saveNote(note);
   }
 
   toggleDropdown() {
@@ -61,5 +62,9 @@ export class CategoryDetailComponent implements OnInit {
 
   onDoneRenaming() {
     this.renameMode = false;
+  }
+  onNoteSelected() {
+    this.selectNote = true;
+    console.log(this.selectNote)
   }
 }

@@ -2,3 +2,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+.ql-toolbar.ql-snow {
+  border: none !important;
+  border-bottom: 0.5px solid rgba(69,69,69,0.5);
+}
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: #fff;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #fff;
+  stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+  color: #fff;
+}

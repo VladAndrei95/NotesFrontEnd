@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from "./data/data.service";
-import {migrateLegacyGlobalConfig} from "@angular/cli/utilities/config";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,12 @@ import {Router} from "@angular/router";
 export class AppComponent implements OnInit{
   title = 'notes-app';
   authMode = true;
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private dataService: DataService) {
   }
   ngOnInit() {
+    this.dataService.isLoggedIn().subscribe();
   }
 }
+ //   TODO: afisat data in notes-list
+ //

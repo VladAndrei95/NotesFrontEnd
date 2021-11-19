@@ -27,21 +27,17 @@ export class NoteService {
   }
 
   setNotes(notes: Note[]) {
-    this.notes.push(...notes);
+    this.notes = notes;
     this.notesChanged.next(this.notes.slice());
   }
 
-  resetNotes() {
-    this.notes = [];
-  }
-
-  addNote(category: Category) {
-    let note = new Note('NewNote', 'Write some content', category.id, null)
-    let newTitle = this.checkIfDuplicate(note);
-    note.title = newTitle;
-    this.notes.push(note);
-    this.notesChanged.next(this.notes.slice());
-  }
+  // addNote(category: Category) {
+  //   let note = new Note('NewNote', 'Write some content', category.id, null)
+  //   let newTitle = this.checkIfDuplicate(note);
+  //   note.title = newTitle;
+  //   this.notes.push(note);
+  //   this.notesChanged.next(this.notes.slice());
+  // }
 
   checkIfDuplicate(note: Note) {
     let unique = new Set(this.notes.map(note => note.title));
@@ -54,7 +50,8 @@ export class NoteService {
           note.title = note.title + '(' + cnt.toString() + ')';
         } else {
           let newNoteTitle = note.title.split('');
-          newNoteTitle[newNoteTitle.length - 2] = cnt.toString();
+          newNoteTitle.splice(newNoteTitle.length-2,1,cnt.toString())
+          // newNoteTitle[newNoteTitle.length - 2] = cnt.toString();
           note.title = newNoteTitle.join('');
         }
         cnt++;

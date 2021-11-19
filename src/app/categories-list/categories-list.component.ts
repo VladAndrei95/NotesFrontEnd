@@ -34,7 +34,6 @@ export class CategoriesListComponent implements OnInit {
     this.createMode = true;
   }
   onGetNotes(category: Category) {
-  this.noteService.resetNotes();
   // this.dataService.fetchNotes(category.id).subscribe();
   }
   onCreated() {

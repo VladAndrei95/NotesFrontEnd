@@ -1,21 +1,32 @@
 <div class="background">
   <div class="block-container rounded">
-    <div class="image-container rounded-l-2xl"></div>
+    <div class="image-container rounded-l-2xl" *ngIf="loginMode">
+      <img src="assets\login.svg" alt="">
+    </div>
+    <div class="image-container rounded-l-2xl" *ngIf="!loginMode">
+      <img src="assets\create_acc.svg" alt="">
+    </div>
     <div class="login-container rounded-r-2xl">
       <form class="form-container" *ngIf="loginMode" [formGroup]="signInForm">
         <div style="position: relative" class="w-2/3">
           <fa-icon class="icon-user" [icon]="faUser"></fa-icon>
-          <input style="background-color: white;border:1px solid rgb(224,224,224); padding-left: 40px; height: 3rem"
-                 class="form-control shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                 type="text" placeholder="Username" formControlName="username">
-          <p class="text-red-500 text-xs italic" *ngIf="!this.signInForm.get('username')?.valid && this.signInForm.get('username')?.touched">Please choose a username.</p>
+          <input
+            style="background-color: rgb(35,35,35);border:1px solid rgb(40,40,40); padding-left: 40px; height: 3rem"
+            class="form-control shadow appearance-none rounded w-full py-2 px-3 mb-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+            type="text" placeholder="Username" formControlName="username">
+          <p class="text-red-500 text-xs italic"
+             *ngIf="!this.signInForm.get('username')?.valid && this.signInForm.get('username')?.touched">Please choose a
+            username.</p>
         </div>
         <div style="position: relative" class="w-2/3">
           <fa-icon class="icon-user" [icon]="faLock"></fa-icon>
-          <input style="background-color: white;border:1px solid rgb(224,224,224); padding-left: 40px; height: 3rem"
-                 class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                 type="password" placeholder="******************" formControlName="password">
-          <p class="text-red-500 text-xs italic" *ngIf="!this.signInForm.get('password')?.valid && this.signInForm.get('password')?.touched">Please choose a password.</p>
+          <input
+            style="background-color: rgb(35,35,35);border:1px solid rgb(40,40,40); padding-left: 40px; height: 3rem"
+            class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            type="password" placeholder="********" formControlName="password">
+          <p class="text-red-500 text-xs italic"
+             *ngIf="!this.signInForm.get('password')?.valid && this.signInForm.get('password')?.touched">Please choose a
+            password.</p>
         </div>
         <div class="buttons-container">
           <button
@@ -24,33 +35,43 @@
             {{loginMode ? 'Sign In' : 'Create Account'}}
           </button>
           <a
-            class="cursor-pointer inline-block align-baseline font-medium text-sm text-green-500 hover:text-green-800 create-account" (click)="onChangeLoginMode()">
+            class="cursor-pointer inline-block align-baseline font-medium text-sm text-green-500 hover:text-green-800 create-account mx-4 px-7"
+            (click)="onChangeLoginMode()">
             {{!loginMode ? 'Sign In' : 'Create Account'}}
           </a>
         </div>
       </form>
       <form class="form-container" *ngIf="!loginMode" [formGroup]="createAccForm">
-      <div style="position: relative" class="w-2/3">
-        <fa-icon class="icon-user" [icon]="faUser"></fa-icon>
-        <input style="background-color: white;border:1px solid rgb(224,224,224); padding-left: 40px; height: 3rem"
-               class="form-control shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               type="text" placeholder="Username" formControlName="username">
-        <p class="text-red-500 text-xs italic" *ngIf="!this.createAccForm.get('username')?.valid && this.createAccForm.get('username')?.touched">Please choose a username.</p>
-      </div>
-      <div style="position: relative" class="w-2/3">
-        <fa-icon class="icon-user" [icon]="faLock"></fa-icon>
-        <input style="background-color: white;border:1px solid rgb(224,224,224); padding-left: 40px; height: 3rem"
-               class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="password" placeholder="******************" formControlName="password">
-        <p class="text-red-500 text-xs italic" *ngIf="!this.createAccForm.get('username')?.valid && this.createAccForm.get('username')?.touched">Please choose a password.</p>
-      </div>
-      <div style="position: relative" class="w-2/3">
-        <fa-icon class="icon-user" [icon]="faLock"></fa-icon>
-        <input style="background-color: white;border:1px solid rgb(224,224,224); padding-left: 40px; height: 3rem"
-               class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                type="password" placeholder="******************" formControlName="confirmPassword">
-        <p class="text-red-500 text-xs italic" *ngIf="this.createAccForm.get('confirmPassword')?.value!==this.createAccForm.get('password')?.value && this.createAccForm.get('confirmPassword')?.touched">Passwords don't match</p>
-      </div>
+        <div style="position: relative" class="w-2/3">
+          <fa-icon class="icon-user" [icon]="faUser"></fa-icon>
+          <input
+            style="background-color: rgb(35,35,35);border:1px solid rgb(40,40,40); padding-left: 40px; height: 3rem"
+            class="form-control shadow appearance-none rounded w-full py-2 px-3 mb-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+            type="text" placeholder="Username" formControlName="username">
+          <p class="text-red-500 text-xs italic"
+             *ngIf="!this.createAccForm.get('username')?.valid && this.createAccForm.get('username')?.touched">Please
+            choose a username.</p>
+        </div>
+        <div style="position: relative" class="w-2/3">
+          <fa-icon class="icon-user" [icon]="faLock"></fa-icon>
+          <input
+            style="background-color: rgb(35,35,35);border:1px solid rgb(40,40,40); padding-left: 40px; height: 3rem"
+            class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            type="password" placeholder="********" formControlName="password">
+          <p class="text-red-500 text-xs italic"
+             *ngIf="!this.createAccForm.get('username')?.valid && this.createAccForm.get('username')?.touched">Please
+            choose a password.</p>
+        </div>
+        <div style="position: relative" class="w-2/3">
+          <fa-icon class="icon-user" [icon]="faLock"></fa-icon>
+          <input
+            style="background-color: rgb(35,35,35);border:1px solid rgb(40,40,40); padding-left: 40px; height: 3rem"
+            class="form-control shadow appearance-none border-red-500 rounded w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            type="password" placeholder="********" formControlName="confirmPassword">
+          <p class="text-red-500 text-xs italic"
+             *ngIf="this.createAccForm.get('confirmPassword')?.value!==this.createAccForm.get('password')?.value && this.createAccForm.get('confirmPassword')?.touched">
+            Passwords don't match</p>
+        </div>
         <div class="buttons-container">
           <button
             class="font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline sign-in"
@@ -58,7 +79,8 @@
             {{loginMode ? 'Sign In' : 'Create Account'}}
           </button>
           <a
-            class="cursor-pointer inline-block align-baseline font-medium text-sm text-green-500 hover:text-green-800 create-account" (click)="onChangeLoginMode()">
+            class="cursor-pointer inline-block align-baseline font-medium text-sm text-green-500 hover:text-green-800 create-account mx-4 px-7"
+            (click)="onChangeLoginMode()">
             {{!loginMode ? 'Sign In' : 'Create Account'}}
           </a>
         </div>

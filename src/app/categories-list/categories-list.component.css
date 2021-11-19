@@ -11,12 +11,12 @@
 }
 .create-category {
   margin-bottom: 20px;
-  background-color: #00FF00
+  background-color: #32CD32;
 }
 
 .create-category:hover {
-  background-color: #00e63d;
-  color: rgb(40,40,40);
+  background-color: #3CB371;
+  color: #00e63d;
 }
 /*.category {*/
 /*  display: block;*/
@@ -31,8 +31,8 @@
 
 div .category-active {
   width: 100%;
-  color: darkgrey;
   background-color: rgb(48,48,48);
+  color: gainsboro;
 }
 
 
@@ -60,17 +60,16 @@ div .dropdown h1 {
    font-weight: 490;
  }
 
-.dropdown h1:hover {
+.categories h1:hover {
   background-color: rgb(32,32,32);
 }
 
 .dropdown-item {
   cursor: pointer;
   width: 100%;
-  display: block;
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dropdown-item:hover{
